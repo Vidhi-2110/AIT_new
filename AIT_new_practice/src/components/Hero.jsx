@@ -206,7 +206,7 @@ export default function Hero() {
 
       {/* Background Large Text 2: "Confirm." (Bottom Center) */}
       <div className="bg-confirm-text absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-0 translate-y-8 will-change-transform">
-        <h2 className="text-[clamp(4.5rem,13vw,10rem)] font-bold text-slate-300 tracking-tight leading-none select-none">
+        <h2 className="text-[clamp(4rem,11vw,8.5rem)] font-bold text-slate-300 tracking-tight leading-none select-none">
           Confirm.
         </h2>
       </div>
@@ -334,7 +334,7 @@ export default function Hero() {
         {/* Realistic iPhone Mockup Frame in Vertical Portrait Orientation */}
         <div
           ref={phoneRef}
-          className="hero-phone relative z-20 w-[330px] sm:w-[355px] h-[630px] sm:h-[670px] mb-4 sm:mb-8 bg-gradient-to-b from-[#434957] via-[#161922] to-[#2c313d] rounded-[52px] p-[6px] sm:p-[7px] border border-slate-400/40 shadow-[0_0_85px_rgba(37,99,235,0.35),inset_0_1px_2px_rgba(255,255,255,0.4),inset_0_-1px_2px_rgba(0,0,0,0.9)] flex flex-col justify-between transition-all duration-300 will-change-transform group"
+          className="hero-phone relative z-20 w-[270px] sm:w-[300px] h-[550px] sm:h-[580px] mb-4 sm:mb-8 bg-gradient-to-b from-[#434957] via-[#161922] to-[#2c313d] rounded-[52px] p-[6px] sm:p-[7px] border border-slate-400/40 shadow-[0_0_85px_rgba(37,99,235,0.35),inset_0_1px_2px_rgba(255,255,255,0.4),inset_0_-1px_2px_rgba(0,0,0,0.9)] flex flex-col justify-between transition-all duration-300 will-change-transform group"
         >
           {/* Metallic Side Hardware Buttons */}
           {/* Action / Mute Switch (Left Top) */}
@@ -355,37 +355,39 @@ export default function Hero() {
           {/* Inner Black Bezel & Screen Display Container */}
           <div className="relative w-full h-full bg-[#050608] rounded-[46px] border border-slate-800/80 shadow-[inset_0_0_18px_rgba(0,0,0,0.95)] flex flex-col justify-between overflow-hidden p-4 sm:p-5">
             {/* VIEW 1: HERO LANDING CONTENT (Initial View) */}
-            <div className="hero-landing-content absolute inset-0 p-5 flex flex-col items-center justify-between text-center z-10">
+            <div className="hero-landing-content absolute inset-0 p-5 flex flex-col items-center text-center z-10">
               {/* Dynamic Island Header Notch */}
-              <div className="dynamic-island mt-2 mb-3 bg-black border border-slate-800/90 px-3.5 py-1.5 rounded-full flex items-center gap-2.5 shadow-2xl">
-                <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center text-white text-[9px]">
-                  🤍
+              <div className="dynamic-island mt-2 mb-4 bg-black border border-slate-800/90 px-3.5 py-1.5 rounded-full flex items-center gap-2.5 shadow-2xl">
+                <div className="w-5 h-5 rounded-full flex items-center justify-center text-white">
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                  </svg>
                 </div>
                 <span className="text-[11px] font-medium text-slate-300 tracking-wide">
-                  Accepting payment...
+                  Sending payment..
                 </span>
                 <div className="w-1.5 h-1.5 rounded-full bg-slate-900 border border-slate-700" />
                 <div className="relative w-6 h-6 rounded-full border-2 border-cyan-400 flex items-center justify-center text-[8px] font-bold text-cyan-300">
-                  82%
+                  22%
                 </div>
               </div>
 
-              {/* Subtitle & Headline */}
-              <div className="my-auto max-w-[290px]">
-                <p className="hero-subtitle text-slate-400 text-xs sm:text-sm font-light tracking-wide max-w-[270px] mx-auto mb-3">
+              {/* Subtitle, Headline & Badges Group */}
+              <div className="mt-2 sm:mt-3 w-full px-2 flex flex-col items-center">
+                <p className="hero-subtitle text-[#8B9BB4] text-[9px] sm:text-[10px] font-medium mb-2.5">
                   Powered by AI and user-intent blockchain technology.
                 </p>
-                <h1 className="hero-headline text-2xl sm:text-3xl font-medium tracking-tight text-white leading-tight font-sans">
-                  Send and receive crypto like a text message.
+                <h1 className="hero-headline text-[17px] sm:text-[19px] font-medium tracking-tight text-[#F8FAFC] leading-[1.15] mb-5">
+                  Send and receive crypto<br />
+                  like a text message.
                 </h1>
-              </div>
 
-              {/* App Store Badges */}
-              <div className="hero-badges flex flex-col sm:flex-row items-center justify-center gap-2 mb-2 w-full px-2">
-                <a
-                  href="#app-store"
-                  className="w-full sm:w-auto bg-black/90 text-white border border-white/20 rounded-xl px-3 py-1.5 flex items-center justify-center gap-2 hover:scale-105 transition-all text-xs"
-                >
+                {/* App Store Badges */}
+                <div className="hero-badges flex flex-row items-center justify-center gap-2 w-full px-1">
+                  <a
+                    href="#app-store"
+                    className="flex-1 bg-black/90 text-white border border-white/20 rounded-xl px-2 py-1.5 flex items-center justify-center gap-1.5 hover:scale-105 transition-all"
+                  >
                   <svg className="w-4 h-4 fill-current text-white" viewBox="0 0 24 24">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.32c.64-.78 1.08-1.85.96-2.92-.93.04-2.07.62-2.74 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.11-.53 2.75-1.31z"/>
                   </svg>
@@ -397,7 +399,7 @@ export default function Hero() {
 
                 <a
                   href="#google-play"
-                  className="w-full sm:w-auto bg-black/90 text-white border border-white/20 rounded-xl px-3 py-1.5 flex items-center justify-center gap-2 hover:scale-105 transition-all text-xs"
+                  className="flex-1 bg-black/90 text-white border border-white/20 rounded-xl px-2 py-1.5 flex items-center justify-center gap-1.5 hover:scale-105 transition-all"
                 >
                   <svg className="w-4 h-4" viewBox="0 0 24 24">
                     <path fill="#EA4335" d="M3.6 2.2L13.7 12 3.6 21.8c-.4-.4-.6-.9-.6-1.5V3.7c0-.6.2-1.1.6-1.5z" />
@@ -412,8 +414,9 @@ export default function Hero() {
                 </a>
               </div>
             </div>
+          </div>
 
-            {/* VIEW 2: PORTRAIT IPHONE CHAT SCREEN */}
+          {/* VIEW 2: PORTRAIT IPHONE CHAT SCREEN */}
             <div className="hero-chat-screen absolute inset-0 p-3.5 flex flex-col justify-between opacity-0 scale-95 z-20 pointer-events-none">
               {/* iPhone Status Bar */}
               <div className="flex items-center justify-between text-[11px] text-slate-200 font-medium px-2 pt-1">

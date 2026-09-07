@@ -30,7 +30,7 @@ export default function FooterCTA() {
   }, { scope: sectionRef });
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-gradient-to-b from-white via-[#a5eaff] to-[#1e58d6] overflow-hidden flex flex-col items-center pt-32 font-sans select-none">
+    <section ref={sectionRef} className="relative w-full bg-gradient-to-b from-white via-[#e8f5ff] to-[#2b88ff] overflow-hidden flex flex-col items-center pt-32 font-sans select-none">
       
       {/* Grid pattern overlay */}
       <div 
@@ -63,8 +63,11 @@ export default function FooterCTA() {
 
         {/* Google Play Button Mockup */}
         <button className="flex items-center bg-black text-white px-5 py-2.5 rounded-xl hover:scale-105 transition-transform shadow-lg border border-white/10">
-          <svg className="w-8 h-8 mr-3 text-[#00ff00]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 20.5v-17c0-.83.67-1.5 1.5-1.5.34 0 .67.11.95.31l13.68 10.19c.74.55.74 1.45 0 2L5.45 24.69c-.28.2-.61.31-.95.31-.83 0-1.5-.67-1.5-1.5z"/>
+          <svg className="w-8 h-8 mr-3" viewBox="0 0 24 24">
+            <path fill="#EA4335" d="M3.6 2.2L13.7 12 3.6 21.8c-.4-.4-.6-.9-.6-1.5V3.7c0-.6.2-1.1.6-1.5z" />
+            <path fill="#FBBC04" d="M17.1 8.7l-3.4 3.3 3.4 3.3 3.9-2.2c1.1-.6 1.1-1.6 0-2.2l-3.9-2.2z" />
+            <path fill="#4285F4" d="M3.6 2.2L13.7 12 17.1 8.7 5.7 2.2c-.6-.3-1.4-.3-2.1 0z" />
+            <path fill="#34A853" d="M3.6 21.8l2.1 1.2c.7.4 1.5.4 2.1 0l11.4-6.5-3.4-3.3L3.6 21.8z" />
           </svg>
           <div className="text-left">
             <div className="text-[10px] leading-tight text-gray-300">GET IT ON</div>
@@ -93,36 +96,52 @@ export default function FooterCTA() {
           </div>
         </div>
         
-        {/* Center Phone Mockup */}
-        <div className="absolute bottom-[-50px] left-1/2 -translate-x-1/2 w-[280px] h-[550px] bg-[#111216] border-[10px] border-[#0a0a0c] rounded-[45px] shadow-[0_40px_80px_rgba(0,0,0,0.6)] z-20 overflow-hidden flex flex-col items-center pt-8">
-          {/* Top Notch/Dynamic Island */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[25px] bg-[#0a0a0c] rounded-b-2xl" />
+        {/* Center Phone Mockup (Realistic) */}
+        <div className="absolute bottom-[-50px] left-1/2 -translate-x-1/2 w-[300px] h-[550px] bg-gradient-to-b from-[#434957] via-[#161922] to-[#2c313d] rounded-[52px] p-[6px] border border-slate-400/40 shadow-[0_40px_80px_rgba(0,0,0,0.6),inset_0_1px_2px_rgba(255,255,255,0.4),inset_0_-1px_2px_rgba(0,0,0,0.9)] z-20">
           
-          <div className="w-full px-5 mt-4">
-            <div className="flex justify-between items-center mb-10">
-              <div className="w-8 h-8 rounded-full bg-blue-600 flex justify-center items-center text-white text-xs">O</div>
-              <div className="flex flex-col items-center">
-                <span className="text-white text-xs font-medium">Helena Brown ▾</span>
-                <span className="text-gray-500 text-[10px]">0x3e8...5xc1</span>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-white/10 flex justify-center items-center text-white">◷</div>
-            </div>
+          {/* Inner Screen */}
+          <div className="relative w-full h-full bg-[#050608] rounded-[46px] border border-slate-800/80 shadow-[inset_0_0_18px_rgba(0,0,0,0.95)] overflow-hidden flex flex-col pt-3">
             
-            {/* Balance */}
-            <div className="text-center mb-8">
-              <div className="text-3xl font-light text-white mb-2">$28,832.88</div>
-              <div className="text-xs">
-                <span className="text-green-400 mr-2">+$2,800.23</span>
-                <span className="text-green-400 bg-green-400/20 px-2 py-0.5 rounded">+8.8% (24h)</span>
+            {/* Status Bar */}
+            <div className="w-full flex justify-between items-center px-6 mb-4 z-20">
+              <span className="text-[10px] text-slate-200 font-medium">9:41</span>
+              <div className="flex gap-1.5 items-center text-[9px] text-slate-200">
+                 <span>📶</span>
+                 <span>📡</span>
+                 <div className="w-4.5 h-2 border border-slate-300 rounded-[3px] p-[1px] flex items-center"><div className="w-full h-full bg-white rounded-[1px]" /></div>
               </div>
             </div>
+
+            {/* Dynamic Island */}
+            <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[90px] h-[24px] bg-black rounded-full z-20" />
             
-            {/* Action Buttons */}
-            <div className="flex justify-between px-2 mb-10">
-              <div className="flex flex-col items-center gap-2"><div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white">↓</div><span className="text-[10px] text-gray-400">Receive</span></div>
-              <div className="flex flex-col items-center gap-2"><div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white">↑</div><span className="text-[10px] text-gray-400">Send</span></div>
-              <div className="flex flex-col items-center gap-2"><div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white">⟲</div><span className="text-[10px] text-gray-400">Swap</span></div>
-              <div className="flex flex-col items-center gap-2"><div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white">+</div><span className="text-[10px] text-gray-400">Buy</span></div>
+            {/* Wallet Content */}
+            <div className="w-full px-5 mt-2 z-10">
+              <div className="flex justify-between items-center mb-8">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex justify-center items-center text-white text-xs font-bold">O</div>
+                <div className="flex flex-col items-center">
+                  <span className="text-white text-xs font-medium">Helena Brown ▾</span>
+                  <span className="text-gray-500 text-[9px]">0x3e8...5xc1</span>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex justify-center items-center text-white text-[10px]">◷</div>
+              </div>
+              
+              {/* Balance */}
+              <div className="text-center mb-10">
+                <div className="text-[28px] font-medium text-white mb-2 tracking-tight">$28,832.88</div>
+                <div className="text-[10px] font-medium">
+                  <span className="text-emerald-400 mr-2">+$2,800.23</span>
+                  <span className="text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full border border-emerald-400/20">+88% (24h)</span>
+                </div>
+              </div>
+              
+              {/* Action Buttons */}
+              <div className="flex justify-between px-1 mb-10">
+                <div className="flex flex-col items-center gap-2.5"><div className="w-[42px] h-[42px] rounded-xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-blue-400 text-lg">↓</div><span className="text-[9px] text-gray-400 font-medium">Receive</span></div>
+                <div className="flex flex-col items-center gap-2.5"><div className="w-[42px] h-[42px] rounded-xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-blue-400 text-lg">↑</div><span className="text-[9px] text-gray-400 font-medium">Send</span></div>
+                <div className="flex flex-col items-center gap-2.5"><div className="w-[42px] h-[42px] rounded-xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-blue-400 text-lg">⟲</div><span className="text-[9px] text-gray-400 font-medium">Swap</span></div>
+                <div className="flex flex-col items-center gap-2.5"><div className="w-[42px] h-[42px] rounded-xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-blue-400 text-lg">+</div><span className="text-[9px] text-gray-400 font-medium">Buy</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -142,10 +161,19 @@ export default function FooterCTA() {
           </div>
         </div>
 
+        {/* USDC Coin */}
+        <div data-speed="1.2" className="parallax-coin absolute top-[30%] right-[15%] md:right-[22%] w-[60px] h-[60px] bg-[#1a1b1e] rounded-full border-[3px] border-slate-600 shadow-2xl z-30 flex justify-center items-center transform -rotate-[10deg]">
+          <div className="w-[44px] h-[44px] rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex justify-center items-center">
+            <span className="text-white font-bold text-xl">$</span>
+          </div>
+        </div>
+
         {/* Lock Icon */}
-        <div data-speed="0.8" className="parallax-coin absolute top-[60%] right-[25%] md:right-[30%] w-16 h-20 z-30 transform rotate-[10deg]">
-          <div className="w-8 h-10 border-[6px] border-black rounded-t-full mx-auto mb-[-8px] z-0" />
-          <div className="w-16 h-14 bg-gradient-to-b from-gray-800 to-black rounded-lg shadow-xl border-t border-gray-600 z-10 relative" />
+        <div data-speed="0.8" className="parallax-coin absolute bottom-[30%] right-[25%] md:right-[30%] w-16 h-20 z-30 transform rotate-[10deg]">
+          <div className="w-8 h-10 border-[6px] border-[#222] rounded-t-full mx-auto mb-[-8px] z-0" />
+          <div className="w-16 h-14 bg-gradient-to-b from-gray-800 to-black rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.8)] border-t border-gray-600 z-10 relative flex justify-center items-center">
+            <div className="w-2 h-4 bg-gray-900 rounded-full" />
+          </div>
         </div>
 
         {/* Unknown Coin (Right) */}
