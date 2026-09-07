@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #090a0f;
+    color: #f3f4f6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Custom Keyframe Animations */
+@keyframes pulseOrb {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.35; }
+  100% { transform: scale(1.25) translate(40px, -30px); opacity: 0.55; }
+}
+
+.animate-pulse-orb {
+  animation: pulseOrb 12s infinite alternate ease-in-out;
+}
