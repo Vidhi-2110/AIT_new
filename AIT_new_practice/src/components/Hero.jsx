@@ -15,38 +15,38 @@ export default function Hero() {
     const entranceTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
     entranceTl
-      .fromTo(phoneRef.current, 
+      .fromTo(phoneRef.current,
         { y: 520, scale: 2.5, opacity: 0 },
         { y: 520, scale: 2.5, opacity: 1, duration: 1.6, ease: 'power2.out' }
       )
-      .fromTo('.dynamic-island', 
+      .fromTo('.dynamic-island',
         { scale: 0.85, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.8, ease: 'power2.out' }, 
+        { scale: 1, opacity: 1, duration: 0.8, ease: 'power2.out' },
         '-=0.6'
       )
       .to({ val: 1 }, {
         val: 100,
         duration: 2.0,
         ease: 'power2.out',
-        onUpdate: function() {
+        onUpdate: function () {
           if (percentRef.current) {
             percentRef.current.innerText = Math.round(this.targets()[0].val) + "%";
           }
         }
       }, "-=0.6")
-      .fromTo('.hero-subtitle', 
+      .fromTo('.hero-subtitle',
         { y: 12, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }, 
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' },
         '-=0.4'
       )
-      .fromTo('.hero-headline', 
+      .fromTo('.hero-headline',
         { y: 16, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, 
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
         '-=0.4'
       )
-      .fromTo('.hero-badges', 
+      .fromTo('.hero-badges',
         { y: 12, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }, 
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' },
         '-=0.4'
       );
 
@@ -205,14 +205,14 @@ export default function Hero() {
       {/* Background Large Text 1: "Chat." (Left Side) */}
       <div className="bg-chat-text absolute left-8 sm:left-24 top-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-0 -translate-x-12 will-change-transform">
         <h2 className="text-[clamp(5rem,14vw,11rem)] font-bold text-slate-400 tracking-tight leading-none select-none">
-          Chat.
+          Talk.
         </h2>
       </div>
 
       {/* Background Large Text 2: "Confirm." (Bottom Center) */}
       <div className="bg-confirm-text absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 z-0 pointer-events-none opacity-0 translate-y-8 will-change-transform">
         <h2 className="text-[clamp(4rem,11vw,8.5rem)] font-bold text-slate-300 tracking-tight leading-none select-none">
-          Confirm.
+          Grow.
         </h2>
       </div>
 
@@ -224,7 +224,7 @@ export default function Hero() {
           </span>
           <br className="hidden sm:block" />
           <span className="closing-text-grey text-slate-500 transition-colors duration-500">
-            send crypto.{' '}
+            feel heard.{' '}
           </span>
           <span className="closing-text-blue text-blue-900 transition-colors duration-500 font-bold">
             Ever.
@@ -235,7 +235,7 @@ export default function Hero() {
       {/* 3D Feature Cards Stacked Deck (Images 4 & 5) */}
       <div className="cards-deck-wrapper absolute inset-0 z-25 flex items-center justify-center pointer-events-none opacity-0 [perspective:1200px]">
         <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[400px] flex items-center justify-center">
-          {/* Card 2 (Behind Card 1 - Security & Encrypted) */}
+          {/* Card 2 (Left Card - Security & Encryption) */}
           <div className="feature-card-2 absolute inset-0 bg-gradient-to-b from-[#131926] via-[#0d121c] to-[#07090e] border border-blue-500/30 rounded-3xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.8)] opacity-0 scale-75 transform-gpu transition-all">
             {/* Top Shield Header Visual */}
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600/30 to-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 text-2xl mb-5 shadow-inner">
@@ -244,14 +244,14 @@ export default function Hero() {
               </svg>
             </div>
             <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">
-              End-to-end encrypted messaging and transactions.
+              Private, encrypted conversations.
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
-              Privacy built in. Security by default. We never hold your keys, see your chats, or touch your funds.
+              Privacy built in. Every session stays yours — we never read your conversations or sell your data.
             </p>
           </div>
 
-          {/* Card 3 (Behind Card 1 - Swap and Bridge) */}
+          {/* Card 3 (Right Card - Switch Modes) */}
           <div className="feature-card-3 absolute inset-0 bg-gradient-to-b from-[#131926] via-[#0d121c] to-[#07090e] border border-blue-500/30 rounded-3xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.8)] opacity-0 scale-75 transform-gpu transition-all flex flex-col items-end text-right">
             {/* Top Swap Visual */}
             <div className="relative w-14 h-14 mb-5">
@@ -261,45 +261,41 @@ export default function Hero() {
                   <path d="M6.99 11L3 15L6.99 19V16H14V14H6.99V11ZM21 9L17.01 5V8H10V10H17.01V13L21 9Z" />
                 </svg>
               </div>
-              <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center font-bold text-[7px] text-slate-300">
-                ETH
-              </div>
-              <div className="absolute -bottom-1 -left-1 w-5 h-5 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center font-bold text-[7px] text-slate-300">
-                SOL
-              </div>
             </div>
             <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">
-              Swap and Bridge Your Crypto.
+              Switch modes, anytime.
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
-              Move assets across chains — fast, secure, and seamless.
+              Move between CBT, mindfulness, grief support, and more — fast, seamless, whenever you need.
             </p>
           </div>
 
-          {/* Card 1 (Front Card - Support Your Chain) */}
+          {/* Card 1 (Center Card - 16 Therapists & Personalization) */}
           <div className="feature-card-1 absolute inset-0 bg-gradient-to-b from-[#161f33] via-[#0f1626] to-[#090d17] border border-blue-400/50 rounded-3xl p-6 sm:p-7 shadow-[0_25px_60px_rgba(37,99,235,0.25)] opacity-0 scale-75 transform-gpu transition-all">
-            {/* Top Visual: 3D Blocks Cubes (X, S, FacilPay Logo) */}
+            {/* Top Visual: 3D Blocks Cubes (CBT, SoulNest Logo, AI) */}
             <div className="relative w-full h-36 mb-5 rounded-2xl bg-gradient-to-b from-blue-900/30 to-slate-900/60 border border-blue-500/20 p-4 overflow-hidden flex items-center justify-center">
               <div className="relative flex items-center justify-center gap-3">
-                {/* Cube 1: X */}
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-800 to-slate-950 border border-slate-700 shadow-lg flex items-center justify-center text-slate-300 font-bold text-sm transform -rotate-12">
-                  ✕
+                {/* Cube 1: CBT */}
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-800 to-slate-950 border border-slate-700 shadow-lg flex items-center justify-center text-cyan-300 font-bold text-xs transform -rotate-12">
+                  CBT
                 </div>
-                {/* Cube 2: Main FacilPay Logo */}
+                {/* Cube 2: Main SoulNest Heart Icon */}
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-500 border border-cyan-300 shadow-[0_0_25px_rgba(6,182,212,0.5)] flex items-center justify-center text-white font-extrabold text-base transform rotate-6">
-                  fp
+                  <svg className="w-7 h-7 fill-white" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
                 </div>
-                {/* Cube 3: Token */}
+                {/* Cube 3: AI */}
                 <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-900 to-slate-950 border border-cyan-500/40 shadow-lg flex items-center justify-center text-cyan-300 font-bold text-xs transform rotate-12">
-                  $
+                  AI
                 </div>
               </div>
             </div>
             <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">
-              We support your chain, your language, your lifestyle.
+              16 therapists, your personality, your language.
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-light">
-              FacilPay moves with you — across every chain, every language, and every way of life.
+              SoulNest moves with you — across every mode, every therapist style, and every way you process things.
             </p>
           </div>
         </div>
@@ -389,7 +385,7 @@ export default function Hero() {
                     className="flex-1 bg-black/90 text-white border border-white/20 rounded-xl px-2 py-1.5 flex items-center justify-center gap-1.5 hover:scale-105 transition-all"
                   >
                     <svg className="w-4 h-4 fill-current text-white" viewBox="0 0 24 24">
-                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.32c.64-.78 1.08-1.85.96-2.92-.93.04-2.07.62-2.74 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.11-.53 2.75-1.31z"/>
+                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.32c.64-.78 1.08-1.85.96-2.92-.93.04-2.07.62-2.74 1.4-.59.68-1.11 1.77-.97 2.83 1.04.08 2.11-.53 2.75-1.31z" />
                     </svg>
                     <div className="text-left leading-tight">
                       <div className="text-[7px] uppercase tracking-wider text-slate-400">Download on the</div>
@@ -416,7 +412,7 @@ export default function Hero() {
               </div>
             </div>
 
-          {/* VIEW 2: PORTRAIT IPHONE CHAT SCREEN */}
+            {/* VIEW 2: PORTRAIT IPHONE CHAT SCREEN */}
             <div className="hero-chat-screen absolute inset-0 p-3.5 flex flex-col justify-between opacity-0 scale-95 z-20 pointer-events-none">
               {/* iPhone Status Bar */}
               <div className="flex items-center justify-between text-[11px] text-slate-200 font-medium px-2 pt-1">
@@ -438,25 +434,25 @@ export default function Hero() {
                     👩🏻
                     <span className="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full bg-emerald-400 border border-slate-900" />
                   </div>
-                  <span className="text-xs font-semibold text-white">Helena Brown</span>
+                  <span className="text-xs font-semibold text-white">Dr. Aria</span>
                 </div>
                 <span className="text-slate-400 text-xs cursor-pointer">⋮</span>
               </div>
 
               {/* Chat Messages Area */}
               <div className="flex-1 my-2 flex flex-col gap-2 px-1 justify-start pt-1 overflow-hidden text-left text-[10px]">
-                {/* Bubble 1: Incoming message from Helena */}
+                {/* Bubble 1: Incoming message from Dr. Aria */}
                 <div className="chat-bubble-1 opacity-0 translate-y-3 p-2.5 bg-[#1b1d24] text-slate-200 rounded-2xl rounded-tl-xs max-w-[90%] border border-slate-800/80 shadow-md">
                   <p className="leading-snug text-[10px] font-normal text-slate-300">
-                    Just booked our flights for the offsite. Can you send over your share when you get a sec?
+                    That's worth sitting with for a second — what part of it won't let go?
                   </p>
                   <div className="text-[8px] text-slate-500 text-right mt-1 font-medium">12:30 PM</div>
                 </div>
 
                 {/* Bubble 2: Outgoing blue response message */}
-                <div className="chat-bubble-2 opacity-0 translate-y-3 p-2.5 bg-blue-600 text-white rounded-2xl rounded-tr-xs max-w-[82%] ml-auto shadow-md shadow-blue-600/30">
+                <div className="chat-bubble-2 opacity-0 translate-y-3 p-2.5 bg-blue-600 text-white rounded-2xl rounded-tr-xs max-w-[85%] ml-auto shadow-md shadow-blue-600/30">
                   <p className="leading-snug text-[10px] font-medium">
-                    On it. Sending 250 USDC now.
+                    I think it's that I froze when they asked me a direct question.
                   </p>
                   <div className="text-[8px] text-blue-200 text-right mt-0.5 flex items-center justify-end gap-1">
                     <span>12:31 PM</span>
@@ -464,39 +460,28 @@ export default function Hero() {
                   </div>
                 </div>
 
-                {/* Transaction Receipt Card (Sent Confirmed! -250 USDC) */}
-                <div className="chat-receipt opacity-0 translate-y-3 scale-95 p-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl border border-blue-400/40 text-white shadow-lg shadow-blue-600/20 my-0.5">
+                {/* Action Item Captured Card */}
+                <div className="chat-receipt opacity-0 translate-y-3 scale-95 p-2.5 bg-[#141824] rounded-2xl border border-blue-500/30 text-white shadow-lg my-0.5">
                   <div className="flex items-center justify-between mb-1.5">
                     <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-[9px]">
-                        $
+                      <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 text-[8px] font-bold">
+                        ✓
                       </div>
-                      <div className="leading-tight">
-                        <div className="font-bold text-[10px]">Sent</div>
-                        <div className="text-[8px] text-emerald-300 font-semibold">Confirmed!</div>
-                      </div>
+                      <span className="font-bold text-[10px]">Action Item</span>
                     </div>
-                    <div className="text-right leading-tight">
-                      <div className="font-bold text-xs text-white">-250 USDC</div>
-                      <div className="text-[8px] text-blue-200">$250</div>
-                    </div>
+                    <span className="text-[8px] font-semibold text-emerald-400">Captured</span>
                   </div>
-                  <div className="pt-1.5 border-t border-white/20 flex justify-between items-center text-[8px] text-blue-100">
-                    <span>Transaction Hash</span>
-                    <span className="font-mono text-cyan-200">84a327...</span>
+                  <div className="font-bold text-[10px] text-white my-1 leading-snug">
+                    Prepare one honest answer for next time.
                   </div>
-                  <div className="flex justify-between items-center text-[8px] text-blue-100 mt-0.5">
-                    <span>When</span>
-                    <span>Jan 25, 12:32 PM</span>
+                  <div className="pt-1.5 border-t border-slate-800/80 flex justify-between items-center text-[8px] text-slate-400">
+                    <span>Mode</span>
+                    <span className="text-slate-200 font-medium">CBT · Dr. Aria</span>
                   </div>
-                </div>
-
-                {/* Bubble 3: Helena's follow-up message */}
-                <div className="chat-bubble-3 opacity-0 translate-y-3 p-2.5 bg-[#1b1d24] text-slate-200 rounded-2xl rounded-tl-xs max-w-[85%] border border-slate-800/80 shadow-md">
-                  <p className="leading-snug text-[10px] font-normal text-slate-300">
-                    Received. Fast and flawless — thanks!
-                  </p>
-                  <div className="text-[8px] text-slate-500 text-right mt-1 font-medium">12:33 PM</div>
+                  <div className="flex justify-between items-center text-[8px] text-slate-400 mt-0.5">
+                    <span>Logged</span>
+                    <span className="text-slate-200 font-medium">Jan 25, 12:32 PM</span>
+                  </div>
                 </div>
               </div>
 
