@@ -139,7 +139,7 @@ export default function GlobalReach() {
       </div>
 
       {/* Floating Coins Arc */}
-      <div className="relative z-10 w-full max-w-6xl mt-4 sm:mt-8 h-[250px] sm:h-[500px] mx-auto pointer-events-none">
+      <div className="relative z-30 w-full max-w-6xl mt-4 sm:mt-8 h-[250px] sm:h-[500px] mx-auto pointer-events-none">
         
         <CoinBadge className="coin-badge left-[2%] sm:left-[2%] top-[70%] sm:top-[72%]" rotateClass="-rotate-12" haloColor="rgba(20, 241, 149, 0.3)">
           <svg className="w-7 sm:w-9 h-7 sm:h-9 fill-[#14F195]" viewBox="0 0 24 24"><path d="M4 17h12l-2.5 3H1.5L4 17zm16-8H8l2.5-3h12L20 9zm-2.5 4H5.5L8 10h12l-2.5 3z" /></svg>
