@@ -8,53 +8,61 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Hero() {
   const containerRef = useRef(null);
   const phoneRef = useRef(null);
+  const percentRef = useRef(null);
 
   useGSAP(() => {
-    // 1. Initial Page Load Entrance Animation (Zoomed-in portrait view)
-    const entranceTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    // 1. Initial Page Load Entrance Animation — smooth, staggered reveal
+    const entranceTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
     entranceTl
       .fromTo(phoneRef.current, 
         { y: 520, scale: 2.5, opacity: 0 },
-        { y: 520, scale: 2.5, opacity: 1, duration: 1.2, ease: 'power3.out' }
+        { y: 520, scale: 2.5, opacity: 1, duration: 1.6, ease: 'power2.out' }
       )
       .fromTo('.dynamic-island', 
-        { scale: 0.7, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' }, 
-        '-=0.5'
+        { scale: 0.85, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.8, ease: 'power2.out' }, 
+        '-=0.6'
       )
+      .to({ val: 1 }, {
+        val: 100,
+        duration: 2.0,
+        ease: 'power2.out',
+        onUpdate: function() {
+          if (percentRef.current) {
+            percentRef.current.innerText = Math.round(this.targets()[0].val) + "%";
+          }
+        }
+      }, "-=0.6")
       .fromTo('.hero-subtitle', 
-        { y: 15, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 }, 
-        '-=0.3'
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }, 
+        '-=0.4'
       )
       .fromTo('.hero-headline', 
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 }, 
-        '-=0.3'
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, 
+        '-=0.4'
       )
       .fromTo('.hero-badges', 
-        { y: 15, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 }, 
-        '-=0.3'
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }, 
+        '-=0.4'
       );
 
-    // 2. Comprehensive GSAP ScrollTrigger Timeline:
-    // Zoom out -> Chat Messages -> Transaction Receipt & "Confirm." -> Statement Reveal -> 3D Perspective Grid & Feature Cards Deck
+    // 2. Scroll-driven timeline — silky smooth scrub
     const scrollTl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top top',
         end: '+=6400',
-        scrub: 1.8,
+        scrub: 2.5,
         pin: true,
         anticipatePin: 1,
       },
     });
 
-    // --- PHASE 1: Zoom Out from half-visible close-up to Full Portrait iPhone ---
-    // Phone starts at scale 2.5 pushed down (y:520) so only top half visible with headroom
-    // Scrolling reveals the full phone centered on screen
+    // --- PHASE 1: Smooth zoom out to full phone ---
     scrollTl
       .fromTo(phoneRef.current, {
         scale: 2.5,
@@ -65,98 +73,95 @@ export default function Hero() {
         scale: 1.0,
         y: 0,
         opacity: 1,
-        boxShadow: '0 0 85px rgba(59,130,246,0.85), 0 0 25px rgba(37,99,235,0.5)',
-        borderColor: 'rgba(59,130,246,0.7)',
-        ease: 'power2.inOut',
-        duration: 1.5,
+        boxShadow: '0 0 80px rgba(59,130,246,0.6), 0 0 20px rgba(37,99,235,0.35)',
+        borderColor: 'rgba(59,130,246,0.5)',
+        ease: 'sine.inOut',
+        duration: 2.0,
       }, 0)
-      .fromTo('.hero-landing-content', { opacity: 1, scale: 1, immediateRender: false }, { opacity: 0, scale: 0.96, duration: 0.6, ease: 'power2.inOut' }, 1.2)
-      .fromTo('.hero-chat-screen', { opacity: 0, scale: 0.95, immediateRender: false }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }, 1.5)
-      .fromTo('.horizon-glow', { opacity: 0.8, immediateRender: false }, { opacity: 0.15, duration: 0.8, ease: 'sine.inOut' }, 0.5)
-      .fromTo('.coin-left-top, .coin-left-bottom, .coin-right', { opacity: 1, scale: 1, immediateRender: false }, { opacity: 0, scale: 0.4, duration: 0.8, ease: 'power2.inOut' }, 0.6)
+      .fromTo('.hero-landing-content', { opacity: 1, scale: 1, immediateRender: false }, { opacity: 0, scale: 0.97, duration: 0.8, ease: 'sine.inOut' }, 1.4)
+      .fromTo('.hero-chat-screen', { opacity: 0, scale: 0.97, immediateRender: false }, { opacity: 1, scale: 1, duration: 0.8, ease: 'sine.out' }, 1.6)
+      .fromTo('.horizon-glow', { opacity: 0.8, immediateRender: false }, { opacity: 0.12, duration: 1.2, ease: 'sine.inOut' }, 0.3)
+      .fromTo('.coin-left-top, .coin-left-bottom, .coin-right', { opacity: 1, scale: 1, immediateRender: false }, { opacity: 0, scale: 0.6, duration: 1.2, ease: 'sine.inOut' }, 0.4)
 
-      // --- PHASE 2: "Chat." Background Text & Chat Messages 1 & 2 ---
-      .to('.bg-chat-text', { opacity: 0.8, x: 0, duration: 0.6, ease: 'sine.out' }, 1.6)
-      .to('.chat-bubble-1', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 1.7)
-      .to('.chat-bubble-2', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 2.2)
+      // --- PHASE 2: Chat messages — gentle staggered reveals ---
+      .to('.bg-chat-text', { opacity: 0.7, x: 0, duration: 0.8, ease: 'sine.out' }, 1.8)
+      .to('.chat-bubble-1', { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' }, 1.9)
+      .to('.chat-bubble-2', { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' }, 2.4)
 
-      // --- PHASE 3: Seamless Cross-fade to "Confirm." Text & Receipt Card ---
-      .to('.bg-chat-text', { opacity: 0, y: -20, duration: 0.6, ease: 'power2.in' }, 2.4)
-      .to('.bg-confirm-text', { opacity: 0.9, y: 0, duration: 0.7, ease: 'power3.out' }, 2.5)
-      .to('.chat-receipt', { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'back.out(1.2)' }, 2.6)
-      .to('.chat-bubble-3', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 3.0)
+      // --- PHASE 3: Cross-fade to Confirm & Receipt ---
+      .to('.bg-chat-text', { opacity: 0, y: -15, duration: 0.8, ease: 'sine.inOut' }, 2.6)
+      .to('.bg-confirm-text', { opacity: 0.85, y: 0, duration: 0.9, ease: 'power2.out' }, 2.7)
+      .to('.chat-receipt', { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power2.out' }, 2.8)
+      .to('.chat-bubble-3', { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' }, 3.2)
 
-      // --- PHASE 4: Phone Shrinks & Soft Fades into Atmosphere ---
-      .fromTo(phoneRef.current, { scale: 1.0, opacity: 1 }, { scale: 0.68, opacity: 0.55, duration: 0.8, ease: 'sine.inOut' }, 3.7)
-      .fromTo('.bg-confirm-text', { opacity: 0.9 }, { opacity: 0.35, duration: 0.7, ease: 'sine.inOut' }, 3.7)
-      .fromTo(phoneRef.current, { scale: 0.68, opacity: 0.55 }, { scale: 0.25, opacity: 0, duration: 0.8, ease: 'power2.in' }, 4.4)
-      .fromTo('.bg-confirm-text', { opacity: 0.35 }, { opacity: 0, duration: 0.6, ease: 'power2.in' }, 4.4)
+      // --- PHASE 4: Phone recedes gracefully ---
+      .fromTo(phoneRef.current, { scale: 1.0, opacity: 1 }, { scale: 0.72, opacity: 0.5, duration: 1.0, ease: 'sine.inOut' }, 3.8)
+      .fromTo('.bg-confirm-text', { opacity: 0.85 }, { opacity: 0.3, duration: 0.9, ease: 'sine.inOut' }, 3.8)
+      .fromTo(phoneRef.current, { scale: 0.72, opacity: 0.5 }, { scale: 0.3, opacity: 0, duration: 1.0, ease: 'sine.in' }, 4.5)
+      .fromTo('.bg-confirm-text', { opacity: 0.3 }, { opacity: 0, duration: 0.8, ease: 'sine.in' }, 4.5)
 
-      // --- PHASE 5: Zoom-in Statement Reveal: "The easiest way to / send crypto. Ever." ---
-      .to('.closing-statement', { opacity: 0.4, scale: 0.95, duration: 0.5, ease: 'power2.out' }, 4.2)
-      .to('.closing-statement', { opacity: 1, scale: 1.15, duration: 0.9, ease: 'power3.out' }, 4.6)
-      .to('.closing-text-grey', { color: '#f8fafc', duration: 0.6, ease: 'sine.inOut' }, 4.6)
-      .to('.closing-text-blue', { color: '#38bdf8', duration: 0.6, ease: 'sine.inOut' }, 4.6)
+      // --- PHASE 5: Statement reveal — fluid scale and color shift ---
+      .to('.closing-statement', { opacity: 0.35, scale: 0.96, duration: 0.6, ease: 'sine.out' }, 4.3)
+      .to('.closing-statement', { opacity: 1, scale: 1.12, duration: 1.1, ease: 'power2.out' }, 4.7)
+      .to('.closing-text-grey', { color: '#f8fafc', duration: 0.8, ease: 'sine.inOut' }, 4.7)
+      .to('.closing-text-blue', { color: '#38bdf8', duration: 0.8, ease: 'sine.inOut' }, 4.7)
 
-      // --- PHASE 6: 3D Grid & Feature Cards Deck Reveal (Images 1 - 5) ---
-      // Statement fades out into darkness
-      .to('.closing-statement', { opacity: 0, scale: 1.25, duration: 0.8, ease: 'power2.in' }, 5.3)
+      // --- PHASE 6: Cards deck — elegant emergence ---
+      .to('.closing-statement', { opacity: 0, scale: 1.2, duration: 1.0, ease: 'sine.in' }, 5.4)
+      .to('.perspective-grid', { opacity: 0.6, duration: 0.8, ease: 'sine.out' }, 5.6)
+      .to('.cards-deck-wrapper', { opacity: 1, duration: 0.8, ease: 'sine.out' }, 5.7)
 
-      // 3D Wireframe Grid fades in + Cards container activates
-      .to('.perspective-grid', { opacity: 0.7, duration: 0.6 }, 5.5)
-      .to('.cards-deck-wrapper', { opacity: 1, duration: 0.6 }, 5.6)
+      // Card 1 rises smoothly
+      .to('.feature-card-1', { scale: 1, opacity: 1, y: 0, rotateY: 4, rotateX: 3, duration: 1.1, ease: 'power2.out' }, 5.8)
 
-      // Step 1: Card 1 floats forward out of depth
-      .to('.feature-card-1', { scale: 1, opacity: 1, y: 0, rotateY: 5, rotateX: 4, duration: 0.9, ease: 'power3.out' }, 5.7)
+      // Card 2 glides left
+      .to('.feature-card-2', { scale: 0.96, opacity: 0.85, x: -160, y: 18, rotateY: 10, rotateX: 4, duration: 1.1, ease: 'power2.out' }, 6.3)
 
-      // Step 2: Card 2 emerges to the left
-      .to('.feature-card-2', { scale: 0.95, opacity: 0.85, x: -160, y: 20, rotateY: 12, rotateX: 5, duration: 0.9, ease: 'power3.out' }, 6.2)
+      // Card 3 glides right
+      .to('.feature-card-3', { scale: 0.96, opacity: 0.85, x: 160, y: 18, rotateY: -10, rotateX: 4, duration: 1.1, ease: 'power2.out' }, 6.8)
 
-      // Step 3: Card 3 emerges to the right
-      .to('.feature-card-3', { scale: 0.95, opacity: 0.85, x: 160, y: 20, rotateY: -12, rotateX: 5, duration: 0.9, ease: 'power3.out' }, 6.7)
+      // Cards settle into final fan layout
+      .to('.feature-card-1', { scale: 1, y: 0, x: 0, rotation: 5, rotateY: 0, rotateX: 0, zIndex: 30, duration: 1.4, ease: 'sine.inOut' }, 7.3)
+      .to('.feature-card-2', { scale: 0.96, opacity: 1, x: -260, y: 18, rotation: -10, rotateY: 4, rotateX: 0, zIndex: 20, duration: 1.4, ease: 'sine.inOut' }, 7.3)
+      .to('.feature-card-3', { scale: 0.96, opacity: 1, x: 260, y: 22, rotation: 3, rotateY: -4, rotateX: 0, zIndex: 20, duration: 1.4, ease: 'sine.inOut' }, 7.3)
 
-      // Step 4: Cards fan out into final overlapping deck layout
-      .to('.feature-card-1', { scale: 1, y: 0, x: 0, rotation: 6, rotateY: 0, rotateX: 0, zIndex: 30, duration: 1.2, ease: 'power2.inOut' }, 7.2)
-      .to('.feature-card-2', { scale: 0.95, opacity: 1, x: -260, y: 20, rotation: -12, rotateY: 5, rotateX: 0, zIndex: 20, duration: 1.2, ease: 'power2.inOut' }, 7.2)
-      .to('.feature-card-3', { scale: 0.95, opacity: 1, x: 260, y: 25, rotation: 4, rotateY: -5, rotateX: 0, zIndex: 20, duration: 1.2, ease: 'power2.inOut' }, 7.2)
+      // Hold final deck view
+      .to({}, { duration: 1.2 });
 
-      // Hold final 3D deck view pinned comfortably
-      .to({}, { duration: 1.0 });
-
-    // 3. Continuous Floating Loops for 3D Coins
+    // 3. Gentle floating loops for coins — slow, organic drift
     gsap.to('.coin-left-top', {
-      y: '-=14',
-      rotation: 6,
-      duration: 3.2,
+      y: '-=10',
+      rotation: 4,
+      duration: 4.0,
       repeat: -1,
       yoyo: true,
       ease: 'sine.inOut',
     });
 
     gsap.to('.coin-left-bottom', {
-      y: '-=18',
-      rotation: -8,
-      duration: 3.8,
+      y: '-=12',
+      rotation: -5,
+      duration: 4.5,
       repeat: -1,
       yoyo: true,
       ease: 'sine.inOut',
-      delay: 0.4,
+      delay: 0.6,
     });
 
     gsap.to('.coin-right', {
-      y: '-=20',
-      rotationY: 15,
-      duration: 3.5,
+      y: '-=14',
+      rotationY: 10,
+      duration: 4.2,
       repeat: -1,
       yoyo: true,
       ease: 'sine.inOut',
-      delay: 0.2,
+      delay: 0.3,
     });
 
-    // 4. Continuous Moving Perspective Grid (Chex Animation)
+    // 4. Slow-moving perspective grid
     gsap.to('.grid-lines', {
       backgroundPositionY: '4rem',
-      duration: 2.5,
+      duration: 4.0,
       repeat: -1,
       ease: 'none',
     });
@@ -357,29 +362,24 @@ export default function Hero() {
             {/* VIEW 1: HERO LANDING CONTENT (Initial View) */}
             <div className="hero-landing-content absolute inset-0 p-5 flex flex-col items-center text-center z-10">
               {/* Dynamic Island Header Notch */}
-              <div className="dynamic-island mt-2 mb-4 bg-black border border-slate-800/90 px-3.5 py-1.5 rounded-full flex items-center gap-2.5 shadow-2xl">
-                <div className="w-5 h-5 rounded-full flex items-center justify-center text-white">
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                  </svg>
-                </div>
-                <span className="text-[11px] font-medium text-slate-300 tracking-wide">
-                  Sending payment..
+              <div className="dynamic-island mt-2 mb-4 bg-black border border-slate-800/90 px-2 py-1 rounded-full flex items-center gap-2 shadow-2xl">
+                <span className="text-[11px] font-medium text-slate-300 tracking-wide pl-1.5">
+                  Talk. Reflect. Grow.
                 </span>
                 <div className="w-1.5 h-1.5 rounded-full bg-slate-900 border border-slate-700" />
-                <div className="relative w-6 h-6 rounded-full border-2 border-cyan-400 flex items-center justify-center text-[8px] font-bold text-cyan-300">
-                  22%
+                <div ref={percentRef} className="relative w-7 h-7 rounded-full border-[1.5px] border-cyan-400 flex items-center justify-center text-[8px] font-bold text-cyan-300">
+                  1%
                 </div>
               </div>
 
               {/* Subtitle, Headline & Badges Group */}
               <div className="mt-2 sm:mt-3 w-full px-2 flex flex-col items-center">
                 <p className="hero-subtitle text-[#8B9BB4] text-[9px] sm:text-[10px] font-medium mb-2.5">
-                  Powered by AI and user-intent blockchain technology.
+                  Powered by AI and evidence-based clinical frameworks.
                 </p>
-                <h1 className="hero-headline text-[17px] sm:text-[19px] font-medium tracking-tight text-[#F8FAFC] leading-[1.15] mb-5">
-                  Send and receive crypto<br />
-                  like a text message.
+                <h1 className="hero-headline text-[14px] sm:text-[16px] font-medium tracking-tight text-[#F8FAFC] leading-[1.15] mb-5">
+                  Your mind deserves a companion,<br />
+                  not just an app.
                 </h1>
 
                 {/* App Store Badges */}
